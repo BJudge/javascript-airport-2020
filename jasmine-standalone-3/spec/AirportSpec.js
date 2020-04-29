@@ -3,7 +3,7 @@ describe('Airport', function() {
   var plane;
   beforeEach(function() {
     airport = new Airport(2);
-    plane = new Plane(); //change to a jasmine spy
+    plane = jasmine.createSpy('plane'); //change to a jasmine spy
   });
   describe('during bad weather', function() {
     it('will not allow a plane to take off in stormy weather', function() {
