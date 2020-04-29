@@ -1,14 +1,13 @@
 
-var Airport = function() {
+var Airport = function(limit) {
   this.hangar = [];
+  this.limit = limit;
 };
 
-const limit = 2;
-
 Airport.prototype.land = function(plane) {
-  if(this.hangar.length + 1 > limit) {
+  if(this.hangar.length + 1 > this.limit) {
   return "Unable to Land. Airport Full";
-} if(this.hangar.length  <=limit) {
+} if(this.hangar.length  < this.limit) {
     this.hangar.push(plane);
     return "plane landed";
 }
@@ -16,5 +15,6 @@ Airport.prototype.land = function(plane) {
 };
 
 Airport.prototype.takeoff = function(plane) {
+  this.hangar.pop(plane);
   return "plane has left the airport";
 };

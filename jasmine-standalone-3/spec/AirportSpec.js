@@ -2,7 +2,7 @@ describe('Airport', function() {
   var airport;
   var plane;
   beforeEach(function() {
-    airport = new Airport();
+    airport = new Airport(2);
     plane = new Plane(); //change to a jasmine spy
   });
 
@@ -19,5 +19,8 @@ describe('Airport', function() {
     airport.land(plane)
     airport.land(plane2)
     expect(airport.land(plane3)).toEqual("Unable to Land. Airport Full");
+  });
+  it('allows a plane limit at creation.', function() {
+    expect(airport.limit).toEqual(2);
   });
 });
