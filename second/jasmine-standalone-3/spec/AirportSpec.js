@@ -8,7 +8,8 @@ describe('airport', function() {
   })
 
   afterEach(function() {
-    airport.hangar = []
+    airport.hangar = [];
+    airport.weather("Good");
   })
 
   it('allows planes to land', function() {
@@ -31,5 +32,14 @@ describe('airport', function() {
   it('can have a unique hangar capcity', function() {
     airport2 = new Airport(7);
     expect(airport2.DEFAULTCAPACITY).toEqual(7);
+  })
+  it('will not allow a plane to land in stromy weather', function() {
+    airport.weather("Bad");
+    expect(airport.land(plane)).toEqual('Unable to land, weather too stormy')
+  })
+  it('will not allow a plane to takeoff in stormy weather', function() {
+    airport.land(plane);
+    airport.weather("Bad")
+    expect(airport.takeoff(plane)).toEqual('Unable to takeoff, weather too stormy')
   })
 })
